@@ -1,55 +1,40 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>San Valentín 💖</title>
-
-  <!-- CSS -->
-  <link rel="stylesheet" href="sanvalentin.css" />
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>San Valentín 💘</title>
+<link rel="stylesheet" href="sanvalentin.css">
 </head>
 
 <body>
 
-  <div id="wrapper">
-    <h2>¿Quieres ser mi San Valentín? 💘</h2>
+<div id="wrapper">
+  <h2 id="question">¿Quieres ser mi San Valentín? 💘</h2>
 
-    <label class="subir">
-      📷 Sube nuestra foto
-      <input type="file" id="upload" hidden />
-    </label>
+  <input type="file" id="upload" hidden>
+  <label for="upload" class="subir">📸 Sube nuestra foto</label>
 
-    <img id="foto" src="" />
+  <img id="foto">
 
-    <div id="btn-group">
-      <button id="yes-btn">Sí 💖</button>
-      <button id="no-btn">No 💔</button>
-    </div>
+  <div class="buttons">
+    <button id="yes-btn">Sí 💖</button>
+    <button id="no-btn">No 💔</button>
+  </div>
+</div>
 
-    <div id="carta" style="display:none;">
-      <h3>Sabía que dirías que sí 😍</h3>
-      <p>
-        Eres mi persona favorita en todo el universo 💗  
-        Gracias por estar conmigo.  
-        Te amo muchísimo 💞
-      </p>
-      <img id="fotoCarta" src="" />
+<!-- 💌 SOBRE -->
+<div id="overlay">
+  <div class="envelope" id="envelope">
+    <div class="flap"></div>
+    <div class="letter">
+      <h3>💌 Para ti</h3>
+      <p>Tendremos una cita el domingo💕</p>
+      <img id="fotoCarta">
     </div>
   </div>
+</div>
 
-  <!-- Corazones flotando -->
-  <div class="bubbles">
-    <span>💗</span>
-    <span>💖</span>
-    <span>💘</span>
-    <span>💝</span>
-    <span>💕</span>
-    <span>💞</span>
-    <span>❤️</span>
-  </div>
+<!-- 🎵 Música -->
+<audio id="music" src="musica.
 
-  <!-- JS -->
-  <script src="sanvalentin.js"></script>
-
-</body>
-</html>
