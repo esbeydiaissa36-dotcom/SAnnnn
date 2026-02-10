@@ -127,21 +127,38 @@ button {
   margin-top: 10px;
 }
 
-/* burbujas flotando siempre */
-.bubble {
+/* burbujas y corazones flotando siempre */
+.bubble, .heart {
   position: fixed;
   bottom: 0;
-  background: rgba(255, 200, 255, 0.7);
   border-radius: 50%;
-  opacity: 0.8;
+  opacity: 0.9;
+  pointer-events: none;
   animation-name: rise;
   animation-timing-function: linear;
   animation-fill-mode: forwards;
-  pointer-events: none;
+  box-shadow: 0 0 10px white;
 }
 
+.heart {
+  width: 20px;
+  height: 20px;
+  background: none;
+  transform: rotate(-45deg);
+}
+.heart::before, .heart::after {
+  content: "";
+  position: absolute;
+  width: 20px;
+  height: 20px;
+  background: #ff4d88;
+  border-radius: 50%;
+}
+.heart::before { top: -10px; left: 0; }
+.heart::after { left: 10px; top: 0; }
+
 @keyframes rise {
-  0% { transform: translateY(0) scale(0.5); opacity: 0.8; }
+  0% { transform: translateY(0) scale(0.5); opacity: 0.9; }
   100% { transform: translateY(-120vh) scale(1); opacity: 0; }
 }
 </style>
@@ -194,7 +211,7 @@ upload.addEventListener("change", () => {
     const url = URL.createObjectURL(file);
     foto.src = url;
     foto.style.display = "block";
-    fotoCarta.src = url; // asegura que la foto de la carta se actualice
+    fotoCarta.src = url;
   }
 });
 
@@ -206,29 +223,36 @@ function moveButton() {
 }
 noBtn.addEventListener("mouseover", moveButton);
 
-// Botón Sí muestra overlay con sobre cerrado
+// Botón Sí muestra overlay
 yesBtn.addEventListener("click", () => {
   overlay.style.display = "flex";
 });
 
-// Abrir sobre y burbujas continuas
+// Abrir sobre y burbujas + corazones continuos
 envelope.addEventListener("click", () => {
   envelope.classList.add("open");
   music.play();
 
-  // burbujas continuas
-  function createBubble() {
-    const bubble = document.createElement("div");
-    bubble.classList.add("bubble");
-    bubble.style.width = bubble.style.height = (Math.random()*20+10)+"px";
-    bubble.style.left = Math.random()*100 + "vw";
-    bubble.style.animationDuration = (Math.random()*3+3)+"s";
-    document.body.appendChild(bubble);
-    bubble.addEventListener("animationend", ()=> bubble.remove());
+  function createParticle() {
+    const isHeart = Math.random() < 0.3; // 30% corazones, 70% burbujas
+    const particle = document.createElement(isHeart ? "div" : "div");
+    particle.className = isHeart ? "heart" : "bubble";
+    
+    if(!isHeart){
+      const size = Math.random()*20+10;
+      particle.style.width = particle.style.height = size+"px";
+      const colors = ["#ff4d88", "#ff85b3", "#ff1ac6", "#ff99ff", "#ff66cc"];
+      particle.style.background = colors[Math.floor(Math.random()*colors.length)];
+    }
+    
+    particle.style.left = Math.random()*100 + "vw";
+    particle.style.animationDuration = (Math.random()*3+3)+"s";
+    
+    document.body.appendChild(particle);
+    particle.addEventListener("animationend", ()=> particle.remove());
   }
 
-  // 1 burbuja cada 300ms durante 10 minutos
-  const interval = setInterval(createBubble, 300);
+  const interval = setInterval(createParticle, 300);
   setTimeout(()=> clearInterval(interval), 10*60*1000); // 10 min
 });
 </script>
