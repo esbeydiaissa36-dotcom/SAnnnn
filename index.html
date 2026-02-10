@@ -61,7 +61,7 @@ button {
 #overlay {
   position: fixed;
   inset: 0;
-  background: rgba(255, 255, 255, 0.4); /* blanco más transparente */
+  background: rgba(255, 255, 255, 0.3); /* más transparente */
   display: none;
   justify-content: center;
   align-items: center;
@@ -238,8 +238,9 @@ envelope.addEventListener("click", () => {
     heart.style.width = heart.style.height = size+"px";
 
     const colors = ["#ff4d88", "#ff85b3", "#ff1ac6", "#ff99ff", "#ff66cc"];
-    heart.style.background = colors[Math.floor(Math.random()*colors.length)];
-    heart.style.boxShadow = `0 0 8px ${colors[Math.floor(Math.random()*colors.length)]}`;
+    const color = colors[Math.floor(Math.random()*colors.length)];
+    heart.style.background = color;
+    heart.style.boxShadow = `0 0 8px ${color}`;
 
     heart.style.left = Math.random()*100 + "vw";
     heart.style.animationDuration = (Math.random()*3+3)+"s";
@@ -255,4 +256,3 @@ envelope.addEventListener("click", () => {
 
 </body>
 </html>
-
