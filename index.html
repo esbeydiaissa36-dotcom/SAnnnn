@@ -6,7 +6,7 @@
 <title>San Valentín 💘</title>
 
 <style>
-body {
+  body {
   margin: 0;
   font-family: "Comic Sans MS", cursive;
   background: linear-gradient(to bottom, #ffd6e8, #fff0f6);
@@ -59,24 +59,29 @@ button {
 #yes-btn { background: #ff4d88; color: white; }
 #no-btn { background: #999; color: white; position: relative; }
 
+/* 🔥 OVERLAY */
 #overlay {
   position: fixed;
-  width: 100%;
-  height: 100%;
+  inset: 0;
   background: rgba(0,0,0,0.6);
   display: none;
   justify-content: center;
   align-items: center;
+  z-index: 999;
 }
 
+/* 💌 SOBRE */
 .envelope {
-  width: 300px;
-  height: 200px;
+  width: 320px;
+  height: 220px;
   background: #ff85b3;
   position: relative;
-  border-radius: 10px;
+  border-radius: 12px;
   cursor: pointer;
   perspective: 1000px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .flap {
@@ -84,7 +89,7 @@ button {
   width: 100%;
   height: 100%;
   background: #ff4d88;
-  clip-path: polygon(0 0, 100% 0, 50% 50%);
+  clip-path: polygon(0 0, 100% 0, 50% 55%);
   transform-origin: top;
   transition: transform 0.8s;
   z-index: 3;
@@ -92,14 +97,12 @@ button {
 
 .letter {
   position: absolute;
-  top: 40px;
-  left: 10px;
-  width: 280px;
-  height: 180px;
+  width: 260px;
   background: white;
   padding: 15px;
   border-radius: 15px;
   text-align: center;
+  top: 40px;
   transition: transform 1s ease;
   z-index: 1;
 }
@@ -111,9 +114,7 @@ button {
 }
 
 .open .flap { transform: rotateX(180deg); }
-.open .letter { transform: translateY(-160px); z-index: 5; }
-</style>
-</head>
+.open .letter { transform: translateY(-180px); z-index: 5; }
 
 <body>
 
@@ -183,3 +184,4 @@ envelope.addEventListener("click", () => {
 
 </body>
 </html>
+
