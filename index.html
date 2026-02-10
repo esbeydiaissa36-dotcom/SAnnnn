@@ -1,42 +1,55 @@
-<div id="wrapper">
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>San Valentín 💖</title>
 
-  <h2 id="question">¿Quieres ser mi San Valentín?</h2>
+  <!-- CSS -->
+  <link rel="stylesheet" href="sanvalentin.css" />
+</head>
 
-  <!-- Subir foto -->
-  <label for="upload" class="subir">📸 Sube nuestra foto</label>
-  <input type="file" id="upload" accept="image/*" hidden>
+<body>
 
-  <!-- Foto previa -->
-  <img id="foto" style="display:none;" alt="foto">
+  <div id="wrapper">
+    <h2>¿Quieres ser mi San Valentín? 💘</h2>
 
-  <!-- Botones -->
-  <div id="btn-group">
-    <button id="yes-btn">Sí 💖</button>
-    <button id="no-btn">No 💔</button>
+    <label class="subir">
+      📷 Sube nuestra foto
+      <input type="file" id="upload" hidden />
+    </label>
+
+    <img id="foto" src="" />
+
+    <div id="btn-group">
+      <button id="yes-btn">Sí 💖</button>
+      <button id="no-btn">No 💔</button>
+    </div>
+
+    <div id="carta" style="display:none;">
+      <h3>Sabía que dirías que sí 😍</h3>
+      <p>
+        Eres mi persona favorita en todo el universo 💗  
+        Gracias por estar conmigo.  
+        Te amo muchísimo 💞
+      </p>
+      <img id="fotoCarta" src="" />
+    </div>
   </div>
 
-  <!-- 💌 Carta final (oculta al inicio) -->
-  <div id="carta" style="display:none;">
-
-    <h2>💌 Te amo 💖</h2>
-
-    <p>
-      Tendremos una cita el domingo💕 <br>
-    </p>
-
-    <!-- Foto dentro de la carta -->
-    <img id="fotoCarta" alt="foto bonita">
-
+  <!-- Corazones flotando -->
+  <div class="bubbles">
+    <span>💗</span>
+    <span>💖</span>
+    <span>💘</span>
+    <span>💝</span>
+    <span>💕</span>
+    <span>💞</span>
+    <span>❤️</span>
   </div>
 
-</div>
+  <!-- JS -->
+  <script src="sanvalentin.js"></script>
 
-<!-- 💗 Corazones burbuja flotando -->
-<div class="bubbles">
-  <span>💖</span>
-  <span>💕</span>
-  <span>💗</span>
-  <span>💞</span>
-  <span>💓</span>
-  <span>💘</span>
-</div>
+</body>
+</html>
