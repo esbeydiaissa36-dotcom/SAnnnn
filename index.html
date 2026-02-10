@@ -57,11 +57,11 @@ button {
 #yes-btn { background: #ff4d88; color: white; }
 #no-btn { background: #999; color: white; position: relative; }
 
-/* overlay con fondo blanco transparente */
+/* overlay con fondo blanco más transparente */
 #overlay {
   position: fixed;
   inset: 0;
-  background: rgba(255, 255, 255, 0.8); /* blanco semi-transparente */
+  background: rgba(255, 255, 255, 0.4); /* blanco más transparente */
   display: none;
   justify-content: center;
   align-items: center;
@@ -128,39 +128,36 @@ button {
   margin-top: 10px;
 }
 
-/* burbujas y corazones flotando visibles sobre fondo blanco */
-.bubble, .heart {
+/* corazones flotando */
+.heart {
   position: fixed;
   bottom: 0;
-  border-radius: 50%;
-  opacity: 0.9;
+  width: 20px;
+  height: 20px;
+  background: #ff1ac6;
+  transform: rotate(-45deg);
   pointer-events: none;
   animation-name: rise;
   animation-timing-function: linear;
   animation-fill-mode: forwards;
-  box-shadow: 0 0 10px white;
+  border-radius: 50%;
+  box-shadow: 0 0 8px white;
 }
 
-.heart {
-  width: 20px;
-  height: 20px;
-  background: none;
-  transform: rotate(-45deg);
-}
 .heart::before, .heart::after {
   content: "";
   position: absolute;
   width: 20px;
   height: 20px;
-  background: #ff1ac6; /* corazones más visibles */
+  background: #ff1ac6;
   border-radius: 50%;
 }
 .heart::before { top: -10px; left: 0; }
 .heart::after { left: 10px; top: 0; }
 
 @keyframes rise {
-  0% { transform: translateY(0) scale(0.5); opacity: 0.9; }
-  100% { transform: translateY(-120vh) scale(1); opacity: 0; }
+  0% { transform: translateY(0) scale(0.5) rotate(-45deg); opacity: 0.9; }
+  100% { transform: translateY(-120vh) scale(1) rotate(-45deg); opacity: 0; }
 }
 </style>
 </head>
@@ -229,31 +226,30 @@ yesBtn.addEventListener("click", () => {
   overlay.style.display = "flex";
 });
 
-// Abrir sobre y burbujas + corazones continuos
+// Abrir sobre y corazones continuos
 envelope.addEventListener("click", () => {
   envelope.classList.add("open");
   music.play();
 
-  function createParticle() {
-    const isHeart = Math.random() < 0.3; // 30% corazones, 70% burbujas
-    const particle = document.createElement(isHeart ? "div" : "div");
-    particle.className = isHeart ? "heart" : "bubble";
-    
-    if(!isHeart){
-      const size = Math.random()*20+10;
-      particle.style.width = particle.style.height = size+"px";
-      const colors = ["#ff4d88", "#ff85b3", "#ff1ac6", "#ff99ff", "#ff66cc"];
-      particle.style.background = colors[Math.floor(Math.random()*colors.length)];
-    }
-    
-    particle.style.left = Math.random()*100 + "vw";
-    particle.style.animationDuration = (Math.random()*3+3)+"s";
-    
-    document.body.appendChild(particle);
-    particle.addEventListener("animationend", ()=> particle.remove());
+  function createHeart() {
+    const heart = document.createElement("div");
+    heart.classList.add("heart");
+
+    const size = Math.random()*20 + 10;
+    heart.style.width = heart.style.height = size+"px";
+
+    const colors = ["#ff4d88", "#ff85b3", "#ff1ac6", "#ff99ff", "#ff66cc"];
+    heart.style.background = colors[Math.floor(Math.random()*colors.length)];
+    heart.style.boxShadow = `0 0 8px ${colors[Math.floor(Math.random()*colors.length)]}`;
+
+    heart.style.left = Math.random()*100 + "vw";
+    heart.style.animationDuration = (Math.random()*3+3)+"s";
+
+    document.body.appendChild(heart);
+    heart.addEventListener("animationend", ()=> heart.remove());
   }
 
-  const interval = setInterval(createParticle, 300);
+  const interval = setInterval(createHeart, 300);
   setTimeout(()=> clearInterval(interval), 10*60*1000); // 10 min
 });
 </script>
