@@ -12,11 +12,10 @@ body {
   background: linear-gradient(to bottom, #ffd6e8, #fff0f6);
   display: flex;
   justify-content: center;
-  align-items: flex-start; /* para que empiece desde arriba */
+  align-items: flex-start; /* empieza desde arriba */
   overflow: auto; /* permite scroll */
-  padding: 20px 0; /* opcional, para que no quede pegado arriba */
+  padding: 20px 0;
 }
-
 
 #wrapper {
   background: white;
@@ -72,7 +71,7 @@ button {
 
 .envelope {
   width: 320px;
-  height: 220px;
+  height: 280px; /* más alto para la carta */
   background: #ff85b3;
   position: relative;
   border-radius: 12px;
@@ -96,13 +95,15 @@ button {
 
 .letter {
   position: absolute;
-  width: 260px;
+  width: 280px;
   background: white;
-  padding: 15px;
+  padding: 20px;
   border-radius: 15px;
   text-align: center;
   top: 40px;
-  transition: transform 1s ease;
+  opacity: 0; /* empieza invisible */
+  transform: translateY(50px) scale(0.8); /* dentro del sobre */
+  transition: transform 1s ease, opacity 1s ease;
   z-index: 1;
 }
 
@@ -113,25 +114,16 @@ button {
 }
 
 .open .flap { transform: rotateX(180deg); }
-.open .letter { transform: translateY(-180px); z-index: 5; }
-  /* 🔥 ARREGLO CARTA GRANDE */
-.letter {
-  width: 280px !important;
-  padding: 20px !important;
-  top: 30px !important;
-  left: 10px !important;
-  z-index: 10 !important;
-}
-
-.letter p {
-  font-size: 18px !important;
-  margin-top: 10px;
-}
-.open .letter {
-  transform: translateY(40px) !important; /* baja la carta */
+.open .letter { 
+  transform: translateY(-140px) scale(1); /* carta sale del sobre */
+  opacity: 1; 
   z-index: 5;
 }
 
+.letter p {
+  font-size: 18px;
+  margin-top: 10px;
+}
 
 </style>
 </head>
@@ -205,6 +197,8 @@ envelope.addEventListener("click", () => {
 
 </body>
 </html>
+
+
 
 
 
