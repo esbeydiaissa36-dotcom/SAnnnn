@@ -57,10 +57,11 @@ button {
 #yes-btn { background: #ff4d88; color: white; }
 #no-btn { background: #999; color: white; position: relative; }
 
+/* overlay con fondo blanco transparente */
 #overlay {
   position: fixed;
   inset: 0;
-  background: rgba(0,0,0,0.6);
+  background: rgba(255, 255, 255, 0.8); /* blanco semi-transparente */
   display: none;
   justify-content: center;
   align-items: center;
@@ -127,7 +128,7 @@ button {
   margin-top: 10px;
 }
 
-/* burbujas y corazones flotando siempre */
+/* burbujas y corazones flotando visibles sobre fondo blanco */
 .bubble, .heart {
   position: fixed;
   bottom: 0;
@@ -151,7 +152,7 @@ button {
   position: absolute;
   width: 20px;
   height: 20px;
-  background: #ff4d88;
+  background: #ff1ac6; /* corazones más visibles */
   border-radius: 50%;
 }
 .heart::before { top: -10px; left: 0; }
