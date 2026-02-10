@@ -12,10 +12,11 @@ body {
   background: linear-gradient(to bottom, #ffd6e8, #fff0f6);
   display: flex;
   justify-content: center;
-  align-items: center;
-  height: 100vh;
-  overflow: hidden;
+  align-items: flex-start; /* para que empiece desde arriba */
+  overflow: auto; /* permite scroll */
+  padding: 20px 0; /* opcional, para que no quede pegado arriba */
 }
+
 
 #wrapper {
   background: white;
@@ -204,6 +205,7 @@ envelope.addEventListener("click", () => {
 
 </body>
 </html>
+
 
 
 
