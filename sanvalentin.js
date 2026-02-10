@@ -7,7 +7,7 @@ const overlay = document.getElementById("overlay");
 const envelope = document.getElementById("envelope");
 const music = document.getElementById("music");
 
-/* subir foto */
+/* Subir foto */
 upload.addEventListener("change", () => {
   const file = upload.files[0];
   if (file) {
@@ -18,7 +18,7 @@ upload.addEventListener("change", () => {
   }
 });
 
-/* botón NO huye */
+/* Botón NO huye */
 function moveButton() {
   noBtn.style.position = "absolute";
   noBtn.style.left = Math.random()*70 + "%";
@@ -26,12 +26,12 @@ function moveButton() {
 }
 noBtn.addEventListener("mouseover", moveButton);
 
-/* botón SÍ muestra sobre */
+/* Botón SÍ muestra sobre */
 yesBtn.addEventListener("click", () => {
   overlay.style.display = "flex";
 });
 
-/* abrir sobre + música */
+/* Abrir sobre + música */
 envelope.addEventListener("click", () => {
   envelope.classList.add("open");
   music.play();
