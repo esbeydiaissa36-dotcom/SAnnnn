@@ -10,7 +10,6 @@ body {
   margin: 0;
   font-family: "Comic Sans MS", cursive;
   background: linear-gradient(to bottom, #ffd6e8, #fff0f6);
-  display: block;
   overflow: auto;
   padding: 20px 0;
 }
@@ -61,7 +60,7 @@ button {
   position: fixed;
   inset: 0;
   background: rgba(0,0,0,0.6);
-  display: none; /* comienza oculto */
+  display: none; /* oculto al inicio */
   justify-content: center;
   align-items: flex-start;
   padding-top: 50px;
@@ -124,7 +123,7 @@ button {
   margin-top: 10px;
 }
 
-/* Burbujas por toda la página */
+/* burbujas */
 .bubble {
   position: fixed;
   bottom: 0;
@@ -142,4 +141,87 @@ button {
 </style>
 </head>
 
-<bod
+<body>
+
+<div id="wrapper">
+  <h2>¿Quieres ser mi San Valentín? 💘</h2>
+
+  <input type="file" id="upload" hidden>
+  <label for="upload" class="subir">📸Sube tu foto nuestra favorita</label>
+
+  <img id="foto">
+
+  <div>
+    <button id="yes-btn">Sí 💖</button>
+    <button id="no-btn">No 💔</button>
+  </div>
+</div>
+
+<div id="overlay">
+  <div class="envelope" id="envelope">
+    <div class="flap"></div>
+    <div class="letter">
+      <h3>💌Para Mike</h3>
+      <p>Te amare incluso cuando nos odiemos. Ninguno huirá, no importa lo que pase. Nos cuidaremos hasta que seamos ancianos, malolientes y seniles.💕</p>
+      <p>El domingo tendremos una cita💗</p>
+      <img id="fotoCarta">
+    </div>
+  </div>
+</div>
+
+<audio id="music" src="musica.mp3"></audio>
+
+<script>
+const upload = document.getElementById("upload");
+const foto = document.getElementById("foto");
+const fotoCarta = document.getElementById("fotoCarta");
+const yesBtn = document.getElementById("yes-btn");
+const noBtn = document.getElementById("no-btn");
+const overlay = document.getElementById("overlay");
+const envelope = document.getElementById("envelope");
+const music = document.getElementById("music");
+
+// subir foto
+upload.addEventListener("change", () => {
+  const file = upload.files[0];
+  if(file){
+    const url = URL.createObjectURL(file);
+    foto.src = url;
+    foto.style.display = "block";
+    fotoCarta.src = url;
+  }
+});
+
+// botón no
+function moveButton() {
+  noBtn.style.position = "absolute";
+  noBtn.style.left = Math.random()*70 + "%";
+  noBtn.style.top = Math.random()*70 + "%";
+}
+noBtn.addEventListener("mouseover", moveButton);
+
+// botón sí muestra overlay
+yesBtn.addEventListener("click", () => {
+  overlay.style.display = "flex";
+});
+
+// abrir sobre y burbujas
+envelope.addEventListener("click", () => {
+  envelope.classList.add("open");
+  music.play();
+
+  // burbujas por toda la página
+  for(let i=0; i<30; i++){
+    const bubble = document.createElement("div");
+    bubble.classList.add("bubble");
+    bubble.style.width = bubble.style.height = (Math.random()*20+10)+"px";
+    bubble.style.left = Math.random()*100 + "vw";
+    bubble.style.animationDuration = (Math.random()*2+3)+"s";
+    document.body.appendChild(bubble);
+    bubble.addEventListener("animationend", ()=> bubble.remove());
+  }
+});
+</script>
+
+</body>
+</html>
