@@ -4,42 +4,182 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>San Valentín 💘</title>
-<link rel="stylesheet" href="sanvalentin.css">
+
+<style>
+body {
+  margin: 0;
+  font-family: "Comic Sans MS", cursive;
+  background: linear-gradient(to bottom, #ffd6e8, #fff0f6);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  overflow: hidden;
+}
+
+#wrapper {
+  background: white;
+  padding: 30px;
+  border-radius: 25px;
+  width: 90%;
+  max-width: 380px;
+  text-align: center;
+  box-shadow: 0 0 25px pink;
+  z-index: 2;
+}
+
+h2 { color: #ff4d88; }
+
+.subir {
+  display: inline-block;
+  margin: 15px;
+  padding: 10px 20px;
+  background: #ff85b3;
+  color: white;
+  border-radius: 15px;
+  cursor: pointer;
+}
+
+#foto {
+  width: 200px;
+  border-radius: 20px;
+  margin: 15px auto;
+  display: none;
+}
+
+button {
+  padding: 12px 20px;
+  border: none;
+  border-radius: 15px;
+  font-size: 18px;
+  cursor: pointer;
+  margin: 10px;
+}
+
+#yes-btn { background: #ff4d88; color: white; }
+#no-btn { background: #999; color: white; position: relative; }
+
+#overlay {
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  background: rgba(0,0,0,0.6);
+  display: none;
+  justify-content: center;
+  align-items: center;
+}
+
+.envelope {
+  width: 300px;
+  height: 200px;
+  background: #ff85b3;
+  position: relative;
+  border-radius: 10px;
+  cursor: pointer;
+  perspective: 1000px;
+}
+
+.flap {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background: #ff4d88;
+  clip-path: polygon(0 0, 100% 0, 50% 50%);
+  transform-origin: top;
+  transition: transform 0.8s;
+  z-index: 3;
+}
+
+.letter {
+  position: absolute;
+  top: 40px;
+  left: 10px;
+  width: 280px;
+  height: 180px;
+  background: white;
+  padding: 15px;
+  border-radius: 15px;
+  text-align: center;
+  transition: transform 1s ease;
+  z-index: 1;
+}
+
+.letter img {
+  width: 150px;
+  border-radius: 15px;
+  margin-top: 10px;
+}
+
+.open .flap { transform: rotateX(180deg); }
+.open .letter { transform: translateY(-160px); z-index: 5; }
+</style>
 </head>
 
 <body>
 
 <div id="wrapper">
-  <h2 id="question">¿Quieres ser mi San Valentín? 💘</h2>
+  <h2>¿Quieres ser mi San Valentín? 💘</h2>
 
   <input type="file" id="upload" hidden>
   <label for="upload" class="subir">📸 Sube nuestra foto</label>
 
   <img id="foto">
 
-  <div class="buttons">
+  <div>
     <button id="yes-btn">Sí 💖</button>
     <button id="no-btn">No 💔</button>
   </div>
 </div>
 
-<!-- 💌 SOBRE -->
 <div id="overlay">
   <div class="envelope" id="envelope">
     <div class="flap"></div>
     <div class="letter">
       <h3>💌 Para ti</h3>
-      <p>Tendremos una cita el domingo 💕</p>
+      <p>Tendremos una cita el domingo💕</p>
       <img id="fotoCarta">
     </div>
   </div>
 </div>
 
-<!-- 🎵 Música -->
+<audio id="music" src="musica.mp3"></audio>
 
-  <audio id="music" src="musica.mp3"></audio>
-<script src="sanvalentin.js"></script>
+<script>
+const upload = document.getElementById("upload");
+const foto = document.getElementById("foto");
+const fotoCarta = document.getElementById("fotoCarta");
+const yesBtn = document.getElementById("yes-btn");
+const noBtn = document.getElementById("no-btn");
+const overlay = document.getElementById("overlay");
+const envelope = document.getElementById("envelope");
+const music = document.getElementById("music");
+
+upload.addEventListener("change", () => {
+  const file = upload.files[0];
+  if (file) {
+    const url = URL.createObjectURL(file);
+    foto.src = url;
+    foto.style.display = "block";
+    fotoCarta.src = url;
+  }
+});
+
+function moveButton() {
+  noBtn.style.position = "absolute";
+  noBtn.style.left = Math.random()*70 + "%";
+  noBtn.style.top = Math.random()*70 + "%";
+}
+noBtn.addEventListener("mouseover", moveButton);
+
+yesBtn.addEventListener("click", () => {
+  overlay.style.display = "flex";
+});
+
+envelope.addEventListener("click", () => {
+  envelope.classList.add("open");
+  music.play();
+});
+</script>
+
 </body>
 </html>
-
-
