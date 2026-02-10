@@ -1,46 +1,34 @@
-const upload = document.getElementById("upload");
-const foto = document.getElementById("foto");
+document.addEventListener("DOMContentLoaded", function () {
 
-const yesBtn = document.getElementById("yes-btn");
-const noBtn = document.getElementById("no-btn");
-const question = document.getElementById("question");
+  const upload = document.getElementById("upload");
+  const foto = document.getElementById("foto");
 
-const carta = document.getElementById("carta");
-const fotoCarta = document.getElementById("fotoCarta");
+  const yesBtn = document.getElementById("yes-btn");
+  const noBtn = document.getElementById("no-btn");
+  const question = document.getElementById("question");
 
-/* Subir foto */
-upload.addEventListener("change", function () {
-  const file = upload.files[0];
+  const carta = document.getElementById("carta");
+  const fotoCarta = document.getElementById("fotoCarta");
 
-  if (file) {
-    const url = URL.createObjectURL(file);
+  /* Subir foto */
+  upload.addEventListener("change", function () {
+    const file = upload.files[0];
 
-    foto.src = url;
-    foto.style.display = "block";
+    if (file) {
+      const url = URL.createObjectURL(file);
 
-    fotoCarta.src = url;
-  }
-});
+      foto.src = url;
+      foto.style.display = "block";
 
-/* NO se escapa */
-function moveButton() {
-  const x = Math.random() * 80;
-  const y = Math.random() * 80;
+      fotoCarta.src = url;
+    }
+  });
 
-  noBtn.style.position = "absolute";
-  noBtn.style.left = x + "%";
-  noBtn.style.top = y + "%";
-}
+  /* Botón NO huye */
+  function moveButton() {
+    const x = Math.random() * 80;
+    const y = Math.random() * 80;
 
-noBtn.addEventListener("mouseover", moveButton);
-noBtn.addEventListener("touchstart", moveButton);
+    noBtn.style.posi
 
-/* SÍ muestra carta */
-yesBtn.addEventListener("click", () => {
-  question.innerHTML = "Sabía que dirías que sí 😭💖";
 
-  yesBtn.style.display = "none";
-  noBtn.style.display = "none";
-
-  carta.style.display = "block";
-});
