@@ -5,14 +5,17 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>San Valentín 💘</title>
 
+<!-- Fuentes Google Fonts -->
+<link href="https://fonts.googleapis.com/css2?family=Dancing+Script&family=Comfortaa&display=swap" rel="stylesheet">
+
 <style>
 body {
   margin: 0;
-  font-family: "Comic Sans MS", cursive;
   background: linear-gradient(to bottom, #ffd6e8, #fff0f6);
   overflow-x: hidden;
   overflow-y: auto;
   padding: 20px 0;
+  font-family: 'Comfortaa', cursive; /* Por defecto para todo el body */
 }
 
 #wrapper {
@@ -26,7 +29,10 @@ body {
   margin: 0 auto 30px auto;
 }
 
-h2 { color: #ff4d88; }
+h2 { 
+  color: #ff4d88; 
+  font-family: 'Comfortaa', cursive; /* Título divertido y legible */ 
+}
 
 .subir {
   display: inline-block;
@@ -36,6 +42,7 @@ h2 { color: #ff4d88; }
   color: white;
   border-radius: 15px;
   cursor: pointer;
+  font-family: 'Comfortaa', cursive; /* Botón/sube tu foto */
 }
 
 #foto {
@@ -52,16 +59,16 @@ button {
   font-size: 18px;
   cursor: pointer;
   margin: 10px;
+  font-family: 'Comfortaa', cursive; /* Botones */
 }
 
 #yes-btn { background: #ff4d88; color: white; }
 #no-btn { background: #999; color: white; position: relative; }
 
-/* overlay con fondo blanco más transparente */
 #overlay {
   position: fixed;
   inset: 0;
-  background: rgba(255, 255, 255, 0.3); /* más transparente */
+  background: rgba(255, 255, 255, 0.3);
   display: none;
   justify-content: center;
   align-items: center;
@@ -108,6 +115,8 @@ button {
   opacity: 0;
   transition: transform 1s ease, opacity 1s ease;
   z-index: 5;
+  font-family: 'Dancing Script', cursive; /* Fuente romántica para la carta */
+  font-size: 18px;
 }
 
 .letter img {
@@ -121,11 +130,6 @@ button {
 .open .letter { 
   transform: translate(-50%, -50%) scale(1); 
   opacity: 1;
-}
-
-.letter p {
-  font-size: 18px;
-  margin-top: 10px;
 }
 
 /* 💗 corazones glowy flotando */
@@ -154,7 +158,7 @@ button {
   <h2>¿Quieres ser mi San Valentín? 💘</h2>
 
   <input type="file" id="upload" hidden>
-  <label for="upload" class="subir">📸Sube tu foto nuestra favorita</label>
+  <label for="upload" class="subir">📸Sube tu foto favorita</label>
 
   <img id="foto">
 
@@ -221,15 +225,12 @@ envelope.addEventListener("click", () => {
     heart.classList.add("heart");
     heart.textContent = "💗";
 
-    // tamaño aleatorio
-    const size = Math.random()*24 + 16; // 16px a 40px
+    const size = Math.random()*24 + 16; 
     heart.style.fontSize = size + "px";
 
-    // posición horizontal aleatoria
     heart.style.left = Math.random()*100 + "vw";
 
-    // velocidad aleatoria
-    const duration = Math.random()*4 + 3; // 3s a 7s
+    const duration = Math.random()*4 + 3; 
     heart.style.animationDuration = duration + "s";
 
     document.body.appendChild(heart);
@@ -237,7 +238,7 @@ envelope.addEventListener("click", () => {
   }
 
   const interval = setInterval(createHeart, 300);
-  setTimeout(()=> clearInterval(interval), 10*60*1000); // 10 min
+  setTimeout(()=> clearInterval(interval), 10*60*1000); 
 });
 </script>
 
