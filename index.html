@@ -10,7 +10,7 @@ body {
   margin: 0;
   font-family: "Comic Sans MS", cursive;
   background: linear-gradient(to bottom, #ffd6e8, #fff0f6);
-  display: block; /* permite scroll */
+  display: block;
   overflow: auto;
   padding: 20px 0;
 }
@@ -61,7 +61,7 @@ button {
   position: fixed;
   inset: 0;
   background: rgba(0,0,0,0.6);
-  display: flex;
+  display: none; /* comienza oculto */
   justify-content: center;
   align-items: flex-start;
   padding-top: 50px;
@@ -100,7 +100,7 @@ button {
   border-radius: 15px;
   text-align: center;
   top: 40px;
-  opacity: 0; /* invisible al inicio */
+  opacity: 0; /* invisible hasta abrir flap */
   transform: translateY(50px) scale(0.8);
   transition: transform 1s ease, opacity 1s ease;
   z-index: 1;
@@ -124,116 +124,22 @@ button {
   margin-top: 10px;
 }
 
-/* Burbujas */
-#bubbles {
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  top: 0;
-  left: 0;
-  pointer-events: none;
-  overflow: hidden;
-  z-index: 4;
-}
-
+/* Burbujas por toda la página */
 .bubble {
-  position: absolute;
+  position: fixed;
   bottom: 0;
   background: rgba(255, 200, 255, 0.7);
   border-radius: 50%;
   opacity: 0.8;
   animation: rise 4s linear forwards;
+  pointer-events: none;
 }
 
 @keyframes rise {
   0% { transform: translateY(0) scale(0.5); opacity: 0.8; }
   100% { transform: translateY(-300px) scale(1); opacity: 0; }
 }
-
 </style>
 </head>
 
-<body>
-
-<div id="wrapper">
-  <h2>¿Quieres ser mi San Valentín? 💘</h2>
-
-  <input type="file" id="upload" hidden>
-  <label for="upload" class="subir">📸Sube tu foto nuestra favorita</label>
-
-  <img id="foto">
-
-  <div>
-    <button id="yes-btn">Sí 💖</button>
-    <button id="no-btn">No 💔</button>
-  </div>
-</div>
-
-<div id="overlay">
-  <div class="envelope" id="envelope">
-    <div class="flap"></div>
-    <div class="letter">
-      <h3>💌Para Mike</h3>
-      <p>Te amare incluso cuando nos odiemos. Ninguno huirá, no importa lo que pase. Nos cuidaremos hasta que seamos ancianos, malolientes y seniles.💕</p>
-      <p>El domingo tendremos una cita💗</p>
-      <img id="fotoCarta">
-    </div>
-    <div id="bubbles"></div>
-  </div>
-</div>
-
-<audio id="music" src="musica.mp3"></audio>
-
-<script>
-const upload = document.getElementById("upload");
-const foto = document.getElementById("foto");
-const fotoCarta = document.getElementById("fotoCarta");
-const yesBtn = document.getElementById("yes-btn");
-const noBtn = document.getElementById("no-btn");
-const overlay = document.getElementById("overlay");
-const envelope = document.getElementById("envelope");
-const music = document.getElementById("music");
-
-upload.addEventListener("change", () => {
-  const file = upload.files[0];
-  if (file) {
-    const url = URL.createObjectURL(file);
-    foto.src = url;
-    foto.style.display = "block";
-    fotoCarta.src = url;
-  }
-});
-
-function moveButton() {
-  noBtn.style.position = "absolute";
-  noBtn.style.left = Math.random()*70 + "%";
-  noBtn.style.top = Math.random()*70 + "%";
-}
-noBtn.addEventListener("mouseover", moveButton);
-
-yesBtn.addEventListener("click", () => {
-  overlay.style.display = "flex";
-});
-
-envelope.addEventListener("click", () => {
-  envelope.classList.add("open");
-  music.play();
-
-  // Crear burbujas
-  const bubblesContainer = document.getElementById("bubbles");
-  for (let i = 0; i < 20; i++) {
-    const bubble = document.createElement("div");
-    bubble.classList.add("bubble");
-    bubble.style.width = bubble.style.height = (Math.random() * 20 + 10) + "px";
-    bubble.style.left = Math.random() * 100 + "%";
-    bubble.style.animationDuration = (Math.random() * 2 + 3) + "s";
-    bubblesContainer.appendChild(bubble);
-
-    // eliminar burbuja después de la animación
-    bubble.addEventListener("animationend", () => bubble.remove());
-  }
-});
-</script>
-
-</body>
-</html>
+<bod
