@@ -1,34 +1,38 @@
-document.addEventListener("DOMContentLoaded", function () {
+const upload = document.getElementById("upload");
+const foto = document.getElementById("foto");
+const fotoCarta = document.getElementById("fotoCarta");
+const yesBtn = document.getElementById("yes-btn");
+const noBtn = document.getElementById("no-btn");
+const overlay = document.getElementById("overlay");
+const envelope = document.getElementById("envelope");
+const music = document.getElementById("music");
 
-  const upload = document.getElementById("upload");
-  const foto = document.getElementById("foto");
+/* subir foto */
+upload.addEventListener("change", () => {
+  const file = upload.files[0];
+  if (file) {
+    const url = URL.createObjectURL(file);
+    foto.src = url;
+    foto.style.display = "block";
+    fotoCarta.src = url;
+  }
+});
 
-  const yesBtn = document.getElementById("yes-btn");
-  const noBtn = document.getElementById("no-btn");
-  const question = document.getElementById("question");
+/* botón NO huye */
+function moveButton() {
+  noBtn.style.position = "absolute";
+  noBtn.style.left = Math.random()*70 + "%";
+  noBtn.style.top = Math.random()*70 + "%";
+}
+noBtn.addEventListener("mouseover", moveButton);
 
-  const carta = document.getElementById("carta");
-  const fotoCarta = document.getElementById("fotoCarta");
+/* botón SÍ muestra sobre */
+yesBtn.addEventListener("click", () => {
+  overlay.style.display = "flex";
+});
 
-  /* Subir foto */
-  upload.addEventListener("change", function () {
-    const file = upload.files[0];
-
-    if (file) {
-      const url = URL.createObjectURL(file);
-
-      foto.src = url;
-      foto.style.display = "block";
-
-      fotoCarta.src = url;
-    }
-  });
-
-  /* Botón NO huye */
-  function moveButton() {
-    const x = Math.random() * 80;
-    const y = Math.random() * 80;
-
-    noBtn.style.posi
-
-
+/* abrir sobre + música */
+envelope.addEventListener("click", () => {
+  envelope.classList.add("open");
+  music.play();
+});
