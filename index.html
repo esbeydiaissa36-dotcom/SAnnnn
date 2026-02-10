@@ -6,7 +6,7 @@
 <title>San Valentín 💘</title>
 
 <style>
-  body {
+body {
   margin: 0;
   font-family: "Comic Sans MS", cursive;
   background: linear-gradient(to bottom, #ffd6e8, #fff0f6);
@@ -59,7 +59,6 @@ button {
 #yes-btn { background: #ff4d88; color: white; }
 #no-btn { background: #999; color: white; position: relative; }
 
-/* 🔥 OVERLAY */
 #overlay {
   position: fixed;
   inset: 0;
@@ -70,7 +69,6 @@ button {
   z-index: 999;
 }
 
-/* 💌 SOBRE */
 .envelope {
   width: 320px;
   height: 220px;
@@ -115,6 +113,8 @@ button {
 
 .open .flap { transform: rotateX(180deg); }
 .open .letter { transform: translateY(-180px); z-index: 5; }
+</style>
+</head>
 
 <body>
 
@@ -184,4 +184,6 @@ envelope.addEventListener("click", () => {
 
 </body>
 </html>
+
+
 
